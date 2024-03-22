@@ -27,9 +27,9 @@ steps:
   displayName: Delete Kubernetes objects
   inputs:
     connectionType: Azure Resource Manager
-    azureSubscriptionEndpoint: MCAPS-Hybrid-REQ-42760-2022-JackXue (6879fc1e-5aa4-49d6-8bde-b9577bb6d594)
-    azureResourceGroup: zediproin
-    kubernetesCluster: zediproinaks
+    azureSubscriptionEndpoint: <endpointid>
+    azureResourceGroup: jackrg
+    kubernetesCluster: jackaks
     command: delete
     arguments: -f $(System.DefaultWorkingDirectory)/func-kerctl-aks.yml
 
@@ -37,8 +37,8 @@ steps:
   displayName: Deploy to Kubernetes cluster
   inputs:
     connectionType: Azure Resource Manager
-    azureSubscriptionEndpoint: MCAPS-Hybrid-REQ-42760-2022-JackXue (6879fc1e-5aa4-49d6-8bde-b9577bb6d594)
-    azureResourceGroup: zediproin
-    kubernetesCluster: zediproinaks
+    azureSubscriptionEndpoint: <endpointid>
+    azureResourceGroup: jackrg
+    kubernetesCluster: jackaks
     command: apply
     arguments: -f $(System.DefaultWorkingDirectory)/func-kerctl-aks.yml
