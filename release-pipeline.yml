@@ -3,8 +3,8 @@ trigger:
 
 variables:
   # Azure service connection established during pipeline creation
-  azureSubscription: 6879fc1e-5aa4-49d6-8bde-b9577bb6d594
-  appName: jackhpil2func
+  azureSubscription: <your sub>
+  appName: jackfunc
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
