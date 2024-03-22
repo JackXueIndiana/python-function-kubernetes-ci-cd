@@ -1,0 +1,22 @@
+trigger:
+- master
+
+variables:
+  # Azure service connection established during pipeline creation
+  azureSubscription: 6879fc1e-5aa4-49d6-8bde-b9577bb6d594
+  appName: jackhpil2func
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+
+- task: AzureFunctionApp@2 # Add this at the end of your file
+  inputs:
+    azureSubscription: <Azure service connection>
+    appType: functionAppLinux # default is functionApp
+    appName: $(appName)
+    package: $(System.ArtifactsDirectory)/**/*.zip
+    deploymentMethod: 'auto' # 'auto' | 'zipDeploy' | 'runFromPackage'. Required. Deployment method. Default: auto.
+    #Uncomment the next lines to deploy to a deployment slot
+    #Note that deployment slots is not supported for Linux Dynamic SKU
+    #deployToSlotOrASE: true
+    #resourceGroupName: '<Resource Group Name>'
+    #slotName: '<Slot name>'

@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: httptrigger
+  template:
+    metadata:
+      labels:
+        app: httptrigger
+    spec:
+      containers:
+        - name: httptrigger
+          image: jackcontainerreg.azurecr.io/httptrigger:latest
+          ports:
+            - containerPort: 80
+              name: http
+          imagePullPolicy: Always
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name:  httptrigger
+spec:
+  type: LoadBalancer
+  selector:
+    app:  httptrigger
+  ports:
+    - port: 80
+      name: http 
+      protocol: TCP 
+      targetPort: http 
